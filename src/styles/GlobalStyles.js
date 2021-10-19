@@ -16,6 +16,7 @@ export default createGlobalStyle`
             font-family: 'Inter', sans-serif;
             color : ${(props) => props.theme.colors.text[1]};
             background-color : ${(props) => props.theme.colors.text[9]};
+            overflow: overlay;
             overflow-x : hidden;
             ::-webkit-scrollbar {
                 width: 5px;
