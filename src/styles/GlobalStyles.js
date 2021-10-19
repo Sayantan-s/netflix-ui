@@ -14,7 +14,22 @@ export default createGlobalStyle`
     body{
             font-size: 1.6rem;
             font-family: 'Inter', sans-serif;
-            color : ${props => props.theme.colors.text[1]};
-            background-color : ${props => props.theme.colors.background};
+            color : ${(props) => props.theme.colors.text[1]};
+            background-color : ${(props) => props.theme.colors.text[9]};
+            overflow-x : hidden;
+            ::-webkit-scrollbar {
+                width: 5px;
+                background: transparent;
+            }
+            
+            ::-webkit-scrollbar-track {
+                background: rgba(0, 0, 0, 0.2);
+            }
+            
+            ::-webkit-scrollbar-thumb {
+                background-color: ${(props) => props.theme.colors.text[5]}; 
+                border-radius: 10px;
+            }
+            
     }
 `;

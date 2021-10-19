@@ -1,6 +1,6 @@
 const http = async ({ url = '', options }) => {
     const res = await fetch(
-        `https://api.themoviedb.org/3/${url}?api_key=${process.env.REACT_APP_DB_API_KEY}`,
+        `https://api.themoviedb.org/3${url}?api_key=${process.env.REACT_APP_DB_API_KEY}`,
         {
             ...(options && options),
             headers: {

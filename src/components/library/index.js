@@ -5,5 +5,6 @@ import Flex from './Flex.component';
 import Page from './Page.component';
 import Heading from './Heading.component';
 import Image from './Image.component';
+import Text from './Text.component';
 
-export { View, Stack, Link, Flex, Page, Heading, Image };
+export { View, Stack, Link, Flex, Page, Heading, Image, Text };

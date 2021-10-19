@@ -15,7 +15,7 @@ const theme = {
         xxl: '160rem'
     },
     radii: [0, 2, 4, 6, 8, 10, 12, 16, 18, 24, 28, 32, 36, 44],
-    fontSizes: [12, 14, 16, 20, 24, 32, 48, 64, 96],
+    fontSizes: [0.8, 1, 1.2, 1.4, 1.6, 2.0, 2.4, 3.2, 4.8, 6.4, 9.6],
     fontWeights: {
         body: 400,
         heading: 700,
@@ -27,8 +27,7 @@ const theme = {
     },
     colors: {
         white: '#fff',
-        text: ['#ededed', '#b9b9b9', '#848484', '#3b3b3b', '#272727'],
-        background: '#141414',
+        text: ["#F2F2F2", "#DBDBDB", "#C4C4C4", "#ADADAD", "#969696", "#808080", "#666666", "#4D4D4D", "#333333", "#1A1A1A"],
         danger: ['#fff4f4', '#ffc7c7', '#ffa5a5', '#ff6262', '#ff1f1f', '#e61c1c'],
         success: ['#d6f8c4', '#bdf3a0', '#8ceb59', '#52cb10', '#44aa0e'],
         blue: ['#f5f6ff', '#ecedff', '#cfd2ff', '#b1b7ff', '#7780ff', '#3d4aff', '#3743e6']

@@ -19,3 +19,7 @@ function App() {
 export default App;
 
 //https://api.themoviedb.org/3/movie/550?api_key=
+
+//COMMING NEXT WEEK --> /movie/upcoming
+//NEW ON NETFLIX --> /movie/now_playing
+//COMING THIS WEEK --> /trending/all/week
