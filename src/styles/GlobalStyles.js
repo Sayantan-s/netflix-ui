@@ -14,7 +14,7 @@ export default createGlobalStyle`
     body{
             font-size: 1.6rem;
             font-family: 'Inter', sans-serif;
-            color : ${props => props.theme.colors.text[0]};
+            color : ${props => props.theme.colors.text[1]};
             background-color : ${props => props.theme.colors.background};
     }
 `;

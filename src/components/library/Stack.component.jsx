@@ -9,13 +9,13 @@ const Stack = styled(View)`
                     return css`
                         flex-direction: column;
                         & > *:not(:first-child) {
-                            margin-top: ${p => `${p.theme.space[spacing || 2]}rem`};
+                            margin-top: ${p => `${p.theme.space[spacing || 1]}rem`};
                         }                         
                     `;
                 case 'horizontal': default:
                     return css`
                         & > *:not(:first-child) {
-                            margin-left: ${p => `${p.theme.space[spacing || 2]}rem`};
+                            margin-left: ${p => `${p.theme.space[spacing || 1]}rem`};
                         }         
                     `;
            }

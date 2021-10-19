@@ -1,11 +1,16 @@
-import { Stack } from 'components/library'
+import { Heading, Stack, View } from 'components/library'
 import React from 'react'
 
-const MovieDetailRows = () => {
+const MovieDetailRows = ({ heading }) => {
     return (
-        <Stack spacing={1}>
-            
-        </Stack>
+       <View>
+           <Heading level={2}>
+               {heading}
+           </Heading>
+           <Stack spacing={1}>
+                
+            </Stack>
+       </View>
     )
 }
 
