@@ -5,7 +5,9 @@
             "components": ["./components"],
             "utils": ["./utils"],
             "hooks": ["./hooks"],
-            "store": ["./store"]
+            "store": ["./store"],
+            "pages": ["./pages"],
+            "styles": ["./styles"]
         }
     },
     "exclude": ["node_modules"]

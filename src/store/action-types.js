@@ -1,0 +1,1 @@
+export const NAVHEIGHT_VALUE = "NAVHEIGHT_VALUE"

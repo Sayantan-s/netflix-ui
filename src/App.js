@@ -1,12 +1,21 @@
 import Layout from 'components/layout';
-import { BrowserRouter as Router } from 'react-router-dom';
+import { Home, Movies, MyList, NewPopular, TvShows } from 'pages';
+import { Switch, Route } from 'react-router-dom';
 
 function App() {
     return (
-      <Layout>
-
-      </Layout>
-    )
+        <Layout>
+            <Switch>
+                <Route path="/" exact component={Home} />
+                <Route path="/movies" component={Movies} />
+                <Route path="/tvshows" component={TvShows} />
+                <Route path="/newpopular" exact component={NewPopular} />
+                <Route path="/mylist" component={MyList} />
+            </Switch>
+        </Layout>
+    );
 }
 
 export default App;
+
+//https://api.themoviedb.org/3/movie/550?api_key=
