@@ -18,13 +18,13 @@ export default createGlobalStyle`
             background-color : ${(props) => props.theme.colors.text[9]};
             overflow: overlay;
             overflow-x : hidden;
+            user-select: none;
             ::-webkit-scrollbar {
                 width: 5px;
-                background: transparent;
             }
             
             ::-webkit-scrollbar-track {
-                background: rgba(0, 0, 0, 0.2);
+                background: transparent;
             }
             
             ::-webkit-scrollbar-thumb {

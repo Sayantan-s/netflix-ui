@@ -2,10 +2,12 @@ import { Logo } from 'components/constants';
 import { ArrowDown, Gift, Notification, Search, Setting } from 'components/icons';
 import { Flex, Link, Stack, View, Image as Avatar } from 'components/library';
 import React, { forwardRef } from 'react';
-import styled, { useTheme } from 'styled-components';
+import styled, { css, useTheme } from 'styled-components';
 
 const Header = (_, ref) => {
     const theme = useTheme();
+
+    console.log(navigator.userAgent.indexOf('Chrome'));
 
     return (
         <NavWrapper ref={ref}>
@@ -26,11 +28,11 @@ const Header = (_, ref) => {
                     <Notification stroke={theme.colors.text[0]} size={24} />
                     <Stack spacing={1}>
                         <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
-                        <ArrowDown stroke={theme.colors.text[0]} size={24}/>
+                        <ArrowDown stroke={theme.colors.text[0]} size={20} />
                     </Stack>
                     <Stack spacing={1}>
                         <Setting stroke={theme.colors.text[0]} size={24} />
-                        <ArrowDown stroke={theme.colors.text[0]} size={24}/>
+                        <ArrowDown stroke={theme.colors.text[0]} size={20} />
                     </Stack>
                 </Stack>
             </Navbar>
@@ -45,6 +47,16 @@ const NavWrapper = styled(View)`
     position: fixed;
     width: 100%;
     top: 0;
+    z-index: 500;
+    box-shadow: 0px 5px 15px ${(props) => `${props.theme.colors.text[9]}10`};
+    background-color: ${(props) => `${props.theme.colors.text[9]}50`};
+    ${() => {
+        if (navigator.userAgent.indexOf('Chrome') !== -1) {
+            return css`
+                backdrop-filter: blur(15px);
+            `;
+        }
+    }}
 `;
 
 const Navbar = styled(Flex)`

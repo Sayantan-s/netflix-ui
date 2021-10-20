@@ -1,9 +1,9 @@
-import styled from "styled-components";
-import { View } from ".";
+import styled from 'styled-components';
+import { View } from '.';
 
 const Flex = styled(View)({
-    display: "flex",
-    alignItems: props => props.alignItems || "center"
-})
+    display: 'flex',
+    alignItems: (props) => props.alignItems || 'center'
+});
 
-export default Flex
+export default Flex;

@@ -7,20 +7,21 @@ const Text = styled.p`
                 return css`
                     color: ${(props) => props.theme.colors.text[6]};
                     font-size: ${(props) => `${props.theme.fontSizes[3]}rem`};
-                    font-weight: 500;
+                    font-weight: ${(props) => props.fontWeight || 500};
                 `;
             case 'error':
                 return css`
                     color: ${(props) => props.theme.colors.danger[3]};
                     font-size: ${(props) => `${props.theme.fontSizes[2]}rem`};
-                    font-weight: 400;
+                    font-weight: ${(props) => props.fontWeight || 400};
                 `;
             default:
                 return css`
                     color: ${(props) => props.color || props.theme.colors.text[1]};
                     font-size: ${(props) =>
                         `${props.theme.fontSizes[props.fontSize] || props.theme.fontSizes[4]}rem`};
-                    font-weight: 400;
+                    font-weight: ${(props) => props.fontWeight || 400};
+                    line-height: ${(props) => props.lineHeight || 1.2};
                 `;
         }
     }}
@@ -35,5 +36,3 @@ const Text = styled.p`
 `;
 
 export default Text;
-
-//text-overflow: ellipsis;

@@ -1,4 +1,3 @@
-import http from "./http";
-import styleUtilities from "./styleUtilities";
+import http from './http';
 
-export { http, styleUtilities }
+export { http };

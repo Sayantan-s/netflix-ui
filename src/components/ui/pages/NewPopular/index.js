@@ -1,3 +1,3 @@
-import MovieDetailRows from "./MovieDetailRows.component";
+import MovieDetailRows from './MovieDetailRows.component';
 
 export { MovieDetailRows };
