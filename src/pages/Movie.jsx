@@ -38,7 +38,7 @@ const Movie = () => {
                     <Heading as={'h6'} fontSize={'1.6rem'}>
                         Duration:{' '}
                         <Text as="span" color={theme.colors.text[2]} fontWeight={600}>
-                            {Math.floor(runtime / 60)}h {runtime % 60 > 0 && `${runtime % 60}m` }
+                            {Math.floor(runtime / 60)}h {runtime % 60 > 0 && `${runtime % 60}m`}
                         </Text>
                     </Heading>
                     <Flex as={'h6'} fontSize={'1.6rem'} className="page-content--data_rates">

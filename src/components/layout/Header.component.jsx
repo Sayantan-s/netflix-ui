@@ -1,6 +1,6 @@
 import { Logo } from 'components/constants';
 import { ArrowDown, Gift, Notification, Search, Setting } from 'components/icons';
-import { Flex, Link, Stack, View, Image } from 'components/library';
+import { Flex, Link, Stack, View, Image, Button, Text } from 'components/library';
 import { useWindowHasScrolled, useWindowResize } from 'hooks';
 import React, { forwardRef } from 'react';
 import styled, { css, useTheme } from 'styled-components';
@@ -33,9 +33,16 @@ const Header = (_, ref) => {
                     <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
                 ) : (
                     <Stack spacing={4} alignItems="center">
-                        <Search stroke={theme.colors.text[0]} size={24} />
-                        <Gift stroke={theme.colors.text[0]} size={24} />
-                        <Notification stroke={theme.colors.text[0]} size={24} />
+                        <IconButton type="icon" size="4rem" bg="transparent">
+                            <Search stroke={theme.colors.text[0]} size={24} />
+                        </IconButton>
+                        <IconButton type="icon" size="4rem" bg="transparent">
+                            <Gift stroke={theme.colors.text[0]} size={24} />
+                        </IconButton>
+                        <IconButton type="icon" size="4.2rem" bg="transparent" noti>
+                            <Text as="span">9</Text>
+                            <Notification stroke={theme.colors.text[0]} size={40} />
+                        </IconButton>
                         <Stack spacing={1} alignItems="center">
                             <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
                             <ArrowDown stroke={theme.colors.text[0]} size={20} />
@@ -52,6 +59,32 @@ const Header = (_, ref) => {
 };
 
 export default forwardRef(Header);
+
+const IconButton = styled(Button).attrs({ className: 'noti' })`
+    border-radius: 50%;
+    &:hover {
+        background-color: ${(props) => `${props.theme.colors.text[9]}50`};
+    }
+    ${(props) =>
+        props.noti &&
+        css`
+            position: relative;
+            span {
+                position: absolute;
+                right: 3px;
+                font-size: 1rem;
+                background-color: ${(props) => props.theme.colors.danger[4]};
+                font-weight: 700;
+                width: 18px;
+                height: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                padding: 0.5rem;
+                border-radius: 50%;
+            }
+        `}
+`;
 
 const NavWrapper = styled(View)`
     padding: 2.5rem 0;

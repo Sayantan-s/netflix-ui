@@ -22,9 +22,9 @@ const Button = styled.button`
 `;
 
 const IconButtonUtils = css`
-    width: ${(props) => props.size | '2rem'};
-    height: ${(props) => props.size | '2rem'};
-    padding: ${(props) => props.p | '0.8rem'};
+    width: ${(props) => props.size || '2rem'};
+    height: ${(props) => props.size || '2rem'};
+    padding: ${(props) => props.p || '0.8rem'};
 `;
 
 const NormalButtonUtils = css`
