@@ -17,7 +17,10 @@ module.exports = {
         amd: true,
         node: true
     },
-    extends: 'eslint:recommended',
+    plugins: [
+        "react"
+    ],
+    extends:['eslint:recommended',  "plugin:react/recommended"],
     rules: {
         'prettier/prettier': 'off',
         'react/react-in-jsx-scope': 'off',
