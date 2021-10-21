@@ -1,49 +1,47 @@
 name: CI/CD
 
 on:
-  push:
-    branch:
-      - master
+    push:
+        branch:
+            - master
 
 jobs:
+    build:
+        name: Build Netflix UI
+        runs-on: ubuntu-latest
 
-  build:
-    name: Build Netflix UI
-    runs-on : ubuntu-latest
+        strategy:
+            matrix:
+                node-version: [14.x, 16.x]
 
-    strategy:
-      matrix:
-        node-version: [14.x, 16.x]
-    
-    steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v2
+        steps:
+            - name: Checkout codebase
+              uses: actions/checkout@v2
 
-      - name: Use Node environment --> ${{ matrix.node-version }}
-        uses: actions/setup-node@v2
-        with: 
-          node-version: ${{ matrix.node-version }}
-      
-      - name: Install application dependencies.
-        run: npm ci
+            - name: Use Node environment --> ${{ matrix.node-version }}
+              uses: actions/setup-node@v2
+              with:
+                  node-version: ${{ matrix.node-version }}
 
-      - name: Build the application.
-        run: npm run build --if-present
+            - name: Install application dependencies.
+              run: npm ci
 
-  deploy:
+            - name: Build the application.
+              run: npm run build --if-present
 
-    needs: build
-      
-    name: Deploy App
-    runs-on: ubuntu-latest
+    deploy:
+        needs: build
 
-    steps:
-      - name: Checkout codebase
-        uses: actions/checkout@v2
-        
-      - name: Deploy to heroku
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_email: ${{ secrets.HEROKU_EMAIL }}
-          heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-          heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
+        name: Deploy App
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout codebase
+              uses: actions/checkout@v2
+
+            - name: Deploy to heroku
+              uses: akhileshns/heroku-deploy@v3.12.12
+              with:
+                  heroku_email: ${{ secrets.HEROKU_EMAIL }}
+                  heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
+                  heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
