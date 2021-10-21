@@ -4,7 +4,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { request_handler } from 'store/actions/http_request.action';
 import { FETCH_MOVIES } from 'store/action-types';
-import styled from 'styled-components';
 
 const NewPopular = () => {
     const dispatch = useDispatch();
@@ -44,26 +43,15 @@ const NewPopular = () => {
     }, []);
 
     return (
-        <StyledNewAndPopular direction="vertical" spacing={2}>
+        <Stack direction="vertical" spacing={1} isLayout>
             <MovieDetailRows heading="New on Netflix" state={newOnNetflixState} />
             <MovieDetailRows heading="Coming This Week" state={comingThisWeekState} />
             <MovieDetailRows heading="Coming Next Week" state={comingNextWeekState} />
-        </StyledNewAndPopular>
+        </Stack>
     );
 };
 
 export default NewPopular;
-
-const StyledNewAndPopular = styled(Stack)`
-    max-width: calc(1920px - (1920px - ${(props) => props.theme.sizes['3xl']}) / 2);
-    float: right;
-    width: 100%;
-    padding: 0 2rem;
-    @media screen and (max-width: 1440px) {
-        max-width: calc(1440px - (1440px - ${(props) => props.theme.sizes.bigTab}) / 2);
-        float: right;
-    }
-`;
 
 //COMMING NEXT WEEK --> /movie/upcoming
 //NEW ON NETFLIX --> /movie/now_playing

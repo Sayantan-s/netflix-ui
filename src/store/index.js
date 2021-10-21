@@ -5,7 +5,7 @@ import navHeightReducer from './reducers/navHeight.reducer.js';
 
 const rootReducer = combineReducers({
     navHeight: navHeightReducer,
-    movies : fetchmoviesReducer
+    movies: fetchmoviesReducer
 });
 
 const middlewares = [thunk];

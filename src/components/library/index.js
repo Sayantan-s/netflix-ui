@@ -7,5 +7,6 @@ import Heading from './Heading.component';
 import Image from './Image.component';
 import Text from './Text.component';
 import Button from './Button.component';
+import TextInput from './TextInput.component';
 
-export { View, Stack, Link, Flex, Page, Heading, Image, Text, Button };
+export { View, Stack, Link, Flex, Page, Heading, Image, Text, Button, TextInput };

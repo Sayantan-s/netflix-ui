@@ -3,9 +3,7 @@ import { Flex, Image, Text, View, Link, Stack } from 'components/library';
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 
-const MovieDetailCard = ({
-    data: { poster_path, overview, release_date, id, vote_average }
-}) => {
+const MovieDetailCard = ({ data: { poster_path, overview, release_date, id, vote_average } }) => {
     const theme = useTheme();
 
     return (
@@ -26,7 +24,8 @@ const MovieDetailCard = ({
                             lineHeight={theme.lineHeights.body}
                             limited={2}
                             fontSize={2}
-                            className="content-main--overview">
+                            className="content-main--overview"
+                        >
                             {overview}
                         </Text>
                         <Text
@@ -34,7 +33,8 @@ const MovieDetailCard = ({
                             color={theme.colors.text[4]}
                             limited={2}
                             fontSize={2}
-                            as="span">
+                            as="span"
+                        >
                             ...
                         </Text>
                     </Flex>
@@ -45,7 +45,8 @@ const MovieDetailCard = ({
                                 as="span"
                                 color={theme.colors.text[4]}
                                 fontSize={2}
-                                className="content-utils_stack--vote">
+                                className="content-utils_stack--vote"
+                            >
                                 {vote_average.toFixed(1)} &nbsp; &middot;
                             </Text>
                         </Stack>

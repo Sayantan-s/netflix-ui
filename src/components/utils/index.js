@@ -1,4 +1,4 @@
-import Spinner from "./Spinner.component";
-import ErrorMessage from "./ErrorMessage";
+import Spinner from './Spinner.component';
+import ErrorMessage from './ErrorMessage';
 
-export { Spinner, ErrorMessage }
+export { Spinner, ErrorMessage };

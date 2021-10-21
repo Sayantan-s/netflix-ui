@@ -12,8 +12,6 @@ const Header = (_, ref) => {
 
     const width = useWindowResize();
 
-    console.log(width);
-
     return (
         <NavWrapper ref={ref} scrolled={windowHasScrolled}>
             <Navbar isLayout>
@@ -21,13 +19,15 @@ const Header = (_, ref) => {
                     <Link to="/">
                         <Logo />
                     </Link>
-                   {width > 768 && <NavLinkStack spacing={3}>
-                        {navLinks.map(({ to, name }) => (
-                            <Link to={to} key={name} activeClassName="active" exact={true}>
-                                {name}
-                            </Link>
-                        ))}
-                    </NavLinkStack>}
+                    {width > 768 && (
+                        <NavLinkStack spacing={3}>
+                            {navLinks.map(({ to, name }) => (
+                                <Link to={to} key={name} activeClassName="active" exact={true}>
+                                    {name}
+                                </Link>
+                            ))}
+                        </NavLinkStack>
+                    )}
                 </Flex>
                 {width < 1024 ? (
                     <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
@@ -36,11 +36,11 @@ const Header = (_, ref) => {
                         <Search stroke={theme.colors.text[0]} size={24} />
                         <Gift stroke={theme.colors.text[0]} size={24} />
                         <Notification stroke={theme.colors.text[0]} size={24} />
-                        <Stack spacing={1}>
+                        <Stack spacing={1} alignItems="center">
                             <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
                             <ArrowDown stroke={theme.colors.text[0]} size={20} />
                         </Stack>
-                        <Stack spacing={1}>
+                        <Stack spacing={1} alignItems="center">
                             <Setting stroke={theme.colors.text[0]} size={24} />
                             <ArrowDown stroke={theme.colors.text[0]} size={20} />
                         </Stack>

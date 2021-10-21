@@ -13,7 +13,7 @@ const Movie = () => {
 
     const dispatch = useDispatch();
 
-    const { data, loading, error } = useSelector((state) => state.movies.GET_MOVIE_BY_ID); // loading, error
+    const { data, loading, error } = useSelector((state) => state.movies.GET_MOVIE_BY_ID);
 
     const theme = useTheme();
 
@@ -28,14 +28,18 @@ const Movie = () => {
         );
     }, []);
 
-    const { title, overview, vote_average, runtime, genres, backdrop_path } = data;
+    const { title, overview, vote_average, runtime, genres, backdrop_path, adult } = data;
 
     const loadedUI = (
         <>
             <Flex isLayout className="page-content">
                 <Stack direction={'vertical'} spacing={3} className="page-content--data">
+                    {adult && <AdultTag>18+</AdultTag>}
                     <Heading as={'h6'} fontSize={'1.6rem'}>
-                        Duration: {runtime}m
+                        Duration:{' '}
+                        <Text as="span" color={theme.colors.text[2]} fontWeight={600}>
+                            {Math.floor(runtime / 60)}h {runtime % 60 > 0 && `${runtime % 60}m` }
+                        </Text>
                     </Heading>
                     <Flex as={'h6'} fontSize={'1.6rem'} className="page-content--data_rates">
                         <Rating size={24} stroke={`#FDB002`} />
@@ -60,7 +64,6 @@ const Movie = () => {
                     </Heading>
                     <Text
                         lineHeight={theme.lineHeights.body}
-                        limited={4}
                         className="page-content--data-overview">
                         {overview}
                     </Text>
@@ -97,6 +100,20 @@ const Movie = () => {
 };
 
 export default Movie;
+
+const AdultTag = styled(Flex)`
+    background-color: red;
+    width: 3rem;
+    height: 3rem;
+    padding: 0%.3rem;
+    justify-content: center;
+    align-items: center;
+    border-radius: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: 600;
+    background-color: #e7c218;
+    color: ${(props) => props.theme.colors.text[9]};
+`;
 
 const InteractionButtonStack = styled(Stack)`
     margin-top: 3rem;
@@ -151,4 +168,3 @@ const MovieDetailsWrapper = styled(Flex)`
         }
     }
 `;
-
