@@ -14,13 +14,20 @@ export const error_action = ({ type = HTTP_ACTIONS.ERROR, error = '' }) => ({
 });
 
 export const request_handler =
-    ({ url }) =>
+    ({ url, loading_type, success_type, error_type }) =>
     async (dispatch) => {
-        dispatch(loading_action({}));
+        let res;
+        dispatch(loading_action({ type: loading_type }));
         try {
-            const res = await http({ url });
-            dispatch(success_action({ data: res }));
+            res = await http({ url });
+            setTimeout(() => {
+                // Used setTimeout for a better UX.
+                if (Object.keys(res).includes('success') && !res.success) {
+                    return dispatch(error_action({ type: error_type, error: res?.status_message }));
+                }
+                dispatch(success_action({ type: success_type, data: res }));
+            }, 1000);
         } catch (error) {
-            dispatch(error_action({ error }));
+            dispatch(error_action({ type: error_type, error })); // The fetch api does'nt return the error
         }
     };

@@ -1,40 +1,51 @@
 import { Logo } from 'components/constants';
 import { ArrowDown, Gift, Notification, Search, Setting } from 'components/icons';
-import { Flex, Link, Stack, View, Image as Avatar } from 'components/library';
+import { Flex, Link, Stack, View, Image } from 'components/library';
+import { useWindowHasScrolled, useWindowResize } from 'hooks';
 import React, { forwardRef } from 'react';
 import styled, { css, useTheme } from 'styled-components';
 
 const Header = (_, ref) => {
     const theme = useTheme();
 
-    console.log(navigator.userAgent.indexOf('Chrome'));
+    const windowHasScrolled = useWindowHasScrolled();
+
+    const width = useWindowResize();
+
+    console.log(width);
 
     return (
-        <NavWrapper ref={ref}>
+        <NavWrapper ref={ref} scrolled={windowHasScrolled}>
             <Navbar isLayout>
                 <Flex as="nav">
-                    <Logo />
-                    <NavLinkStack spacing={3}>
+                    <Link to="/">
+                        <Logo />
+                    </Link>
+                   {width > 768 && <NavLinkStack spacing={3}>
                         {navLinks.map(({ to, name }) => (
                             <Link to={to} key={name} activeClassName="active" exact={true}>
                                 {name}
                             </Link>
                         ))}
-                    </NavLinkStack>
+                    </NavLinkStack>}
                 </Flex>
-                <Stack spacing={4}>
-                    <Search stroke={theme.colors.text[0]} size={24} />
-                    <Gift stroke={theme.colors.text[0]} size={24} />
-                    <Notification stroke={theme.colors.text[0]} size={24} />
-                    <Stack spacing={1}>
-                        <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
-                        <ArrowDown stroke={theme.colors.text[0]} size={20} />
+                {width < 1024 ? (
+                    <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
+                ) : (
+                    <Stack spacing={4} alignItems="center">
+                        <Search stroke={theme.colors.text[0]} size={24} />
+                        <Gift stroke={theme.colors.text[0]} size={24} />
+                        <Notification stroke={theme.colors.text[0]} size={24} />
+                        <Stack spacing={1}>
+                            <Avatar src="/Avatar.png" w={4} height={4} alt="user_profile" />
+                            <ArrowDown stroke={theme.colors.text[0]} size={20} />
+                        </Stack>
+                        <Stack spacing={1}>
+                            <Setting stroke={theme.colors.text[0]} size={24} />
+                            <ArrowDown stroke={theme.colors.text[0]} size={20} />
+                        </Stack>
                     </Stack>
-                    <Stack spacing={1}>
-                        <Setting stroke={theme.colors.text[0]} size={24} />
-                        <ArrowDown stroke={theme.colors.text[0]} size={20} />
-                    </Stack>
-                </Stack>
+                )}
             </Navbar>
         </NavWrapper>
     );
@@ -48,15 +59,37 @@ const NavWrapper = styled(View)`
     width: 100%;
     top: 0;
     z-index: 500;
-    box-shadow: 0px 5px 15px ${(props) => `${props.theme.colors.text[9]}10`};
-    background-color: ${(props) => `${props.theme.colors.text[9]}50`};
-    ${() => {
-        if (navigator.userAgent.indexOf('Chrome') !== -1) {
+    ${(props) => {
+        if (props.scrolled) {
             return css`
-                backdrop-filter: blur(15px);
+                background-color: ${(props) => `${props.theme.colors.text[9]}50`};
+                box-shadow: 0px 5px 15px ${(props) => `${props.theme.colors.text[9]}10`};
+                ${() => {
+                    if (navigator.userAgent.indexOf('Chrome') !== -1) {
+                        return css`
+                            backdrop-filter: blur(15px);
+                        `;
+                    }
+                }}
             `;
         }
     }}
+`;
+
+const Avatar = styled(Image)`
+    background: -webkit-linear-gradient(
+        260deg,
+        rgba(26, 26, 26, 0.2777485994397759) 0%,
+        rgba(86, 118, 129, 0.7567401960784313) 100%
+    );
+    width: 4rem;
+    height: 4rem;
+    border-radius: 5px;
+    @media screen and (max-width: 768px) {
+        border-radius: 50%;
+        width: 5rem;
+        height: 5rem;
+    }
 `;
 
 const Navbar = styled(Flex)`

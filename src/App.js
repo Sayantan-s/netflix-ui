@@ -1,8 +1,18 @@
 import Layout from 'components/layout';
 import { Home, Movie, Movies, MyList, NewPopular, TvShows } from 'pages';
+import { useEffect, useState } from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 function App() {
+
+    const [ scroll, setScroll ] = useState(0);
+
+    useEffect(() => {
+        setScroll(window.scrollY)
+    },[scroll])
+
+    console.log(scroll)
+
     return (
         <Layout>
             <Switch>

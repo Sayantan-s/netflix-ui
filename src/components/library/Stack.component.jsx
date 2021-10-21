@@ -3,6 +3,7 @@ import { View } from '.';
 
 const Stack = styled(View)`
     display: flex;
+    align-items: ${(props) => props.alignItems || 'flex-start'};
     ${({ direction, spacing }) => {
         switch (direction) {
             case 'vertical':

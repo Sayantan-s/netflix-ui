@@ -28,8 +28,6 @@ const Layout = ({ children }) => {
             hasSpace = false;
     }
 
-    console.log(location);
-
     return (
         <>
             <Header ref={headerRef} />

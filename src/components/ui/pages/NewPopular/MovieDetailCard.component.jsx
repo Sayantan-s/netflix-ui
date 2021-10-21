@@ -4,12 +4,12 @@ import React from 'react';
 import styled, { useTheme } from 'styled-components';
 
 const MovieDetailCard = ({
-    data: { poster_path, overview, release_date, id, vote_average, original_title }
+    data: { poster_path, overview, release_date, id, vote_average }
 }) => {
     const theme = useTheme();
 
     return (
-        <Link to={'movies/' + original_title + '_' + id}>
+        <Link to={'movies/' + id}>
             <MovieCard>
                 <Image
                     src={`https://image.tmdb.org/t/p/original${poster_path}`}
@@ -26,8 +26,7 @@ const MovieDetailCard = ({
                             lineHeight={theme.lineHeights.body}
                             limited={2}
                             fontSize={2}
-                            className="content-main--overview"
-                        >
+                            className="content-main--overview">
                             {overview}
                         </Text>
                         <Text
@@ -35,8 +34,7 @@ const MovieDetailCard = ({
                             color={theme.colors.text[4]}
                             limited={2}
                             fontSize={2}
-                            as="span"
-                        >
+                            as="span">
                             ...
                         </Text>
                     </Flex>
@@ -47,14 +45,13 @@ const MovieDetailCard = ({
                                 as="span"
                                 color={theme.colors.text[4]}
                                 fontSize={2}
-                                className="content-utils_stack--vote"
-                            >
+                                className="content-utils_stack--vote">
                                 {vote_average.toFixed(1)} &nbsp; &middot;
                             </Text>
                         </Stack>
                         &nbsp;&nbsp;
                         <Text as="span" color={theme.colors.text[4]} fontSize={2}>
-                            {release_date.split('-')[0]}
+                            {release_date?.split('-')[0]}
                         </Text>
                     </Flex>
                 </MovieCardContent>

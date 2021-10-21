@@ -11,8 +11,10 @@ const theme = {
         l: '60rem',
         xl: '70rem',
         tab: '102.4rem',
+        bigTab: '120rem',
         desktop: '144rem',
-        xxl: '160rem'
+        xxl: '160rem',
+        "3xl": '170rem'
     },
     radii: [0, 2, 4, 6, 8, 10, 12, 16, 18, 24, 28, 32, 36, 44],
     fontSizes: [0.8, 1, 1.2, 1.4, 1.6, 2.0, 2.4, 3.2, 4.8, 6.4, 9.6, 12],

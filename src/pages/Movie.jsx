@@ -1,34 +1,37 @@
 import { Add, Play, Rating } from 'components/icons';
 import { Button, Flex, Heading, Stack, Text, View } from 'components/library';
-import React, { useEffect, useState } from 'react';
+import { ErrorMessage, Spinner } from 'components/utils';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
+import { FETCH_MOVIES } from 'store/action-types';
+import { request_handler } from 'store/actions/http_request.action';
 import styled, { useTheme } from 'styled-components';
-import { http } from 'utils';
 
 const Movie = () => {
-    const params = useParams();
+    const { id } = useParams();
 
-    const [movie, setMovie] = useState([]);
+    const dispatch = useDispatch();
+
+    const { data, loading, error } = useSelector((state) => state.movies.GET_MOVIE_BY_ID); // loading, error
 
     const theme = useTheme();
 
-    const id = params.id.split('_')[1];
-
     useEffect(() => {
-        (async () => {
-            const res = await http({
-                url: `/movie/${id}`
-            });
-            setMovie(res);
-        })();
+        dispatch(
+            request_handler({
+                url: `/movie/${id}`,
+                loading_type: FETCH_MOVIES.GET_MOVIE_BY_ID.LOADING,
+                success_type: FETCH_MOVIES.GET_MOVIE_BY_ID.SUCCESS,
+                error_type: FETCH_MOVIES.GET_MOVIE_BY_ID.ERROR
+            })
+        );
     }, []);
 
-    console.log(movie);
+    const { title, overview, vote_average, runtime, genres, backdrop_path } = data;
 
-    const { title, overview, vote_average, runtime, genres } = movie;
-
-    return (
-        <MovieDetailsWrapper bg={movie.backdrop_path}>
+    const loadedUI = (
+        <>
             <Flex isLayout className="page-content">
                 <Stack direction={'vertical'} spacing={3} className="page-content--data">
                     <Heading as={'h6'} fontSize={'1.6rem'}>
@@ -41,8 +44,7 @@ const Movie = () => {
                             color={theme.colors.text[2]}
                             fontSize={5}
                             fontWeight={600}
-                            className="page-content--data_rates--vote"
-                        >
+                            className="page-content--data_rates--vote">
                             {vote_average?.toFixed(1)} &nbsp; &middot; &nbsp;
                         </Text>
                         <Flex>
@@ -59,8 +61,7 @@ const Movie = () => {
                     <Text
                         lineHeight={theme.lineHeights.body}
                         limited={4}
-                        className="page-content--data-overview"
-                    >
+                        className="page-content--data-overview">
                         {overview}
                     </Text>
                     <View>
@@ -77,6 +78,20 @@ const Movie = () => {
                     </View>
                 </Stack>
             </Flex>
+        </>
+    );
+
+    console.log(data);
+
+    return (
+        <MovieDetailsWrapper {...(data?.backdrop_path && { bg: backdrop_path })}>
+            {loading ? (
+                <Spinner color={theme.colors.danger[4]} />
+            ) : data?.title ? (
+                loadedUI
+            ) : (
+                <ErrorMessage as={'h5'}>{error}</ErrorMessage>
+            )}
         </MovieDetailsWrapper>
     );
 };
@@ -136,3 +151,4 @@ const MovieDetailsWrapper = styled(Flex)`
         }
     }
 `;
+
