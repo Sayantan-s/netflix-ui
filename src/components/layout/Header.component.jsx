@@ -87,7 +87,7 @@ const IconButton = styled(Button).attrs({ className: 'noti' })`
 `;
 
 const NavWrapper = styled(View)`
-    padding: 2.5rem 0;
+    padding: 2rem 0;
     position: fixed;
     width: 100%;
     top: 0;

@@ -18,7 +18,7 @@ const initialState = {
     },
     GET_MOVIE_BY_ID: {
         loading: false,
-        data: [],
+        data: {},
         error: ''
     }
 };

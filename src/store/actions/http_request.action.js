@@ -5,7 +5,7 @@ export const loading_action = ({ type = HTTP_ACTIONS.LOADING }) => ({ type });
 
 export const success_action = ({ type = HTTP_ACTIONS.SUCCESS, data = [] }) => ({
     type,
-    payload: data
+    payload : data
 });
 
 export const error_action = ({ type = HTTP_ACTIONS.ERROR, error = '' }) => ({

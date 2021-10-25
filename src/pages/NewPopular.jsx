@@ -15,31 +15,37 @@ const NewPopular = () => {
     } = useSelector((state) => state.movies);
 
     useEffect(() => {
-        dispatch(
-            request_handler({
-                url: '/movie/upcoming',
-                loading_type: FETCH_MOVIES.COMING_NEXT_WEEK.LOADING,
-                success_type: FETCH_MOVIES.COMING_NEXT_WEEK.SUCCESS,
-                error_type: FETCH_MOVIES.COMING_NEXT_WEEK.ERROR
-            })
-        );
-        dispatch(
-            request_handler({
-                url: '/trending/all/week',
-                loading_type: FETCH_MOVIES.COMING_THIS_WEEK.LOADING,
-                success_type: FETCH_MOVIES.COMING_THIS_WEEK.SUCCESS,
-                error_type: FETCH_MOVIES.COMING_THIS_WEEK.ERROR
-            })
-        );
+        if (
+            !comingNextWeekState.data?.results &&
+            !comingThisWeekState.data?.results &&
+            !newOnNetflixState.data?.results
+        ) {
+            dispatch(
+                request_handler({
+                    url: '/movie/upcoming',
+                    loading_type: FETCH_MOVIES.COMING_NEXT_WEEK.LOADING,
+                    success_type: FETCH_MOVIES.COMING_NEXT_WEEK.SUCCESS,
+                    error_type: FETCH_MOVIES.COMING_NEXT_WEEK.ERROR
+                })
+            );
+            dispatch(
+                request_handler({
+                    url: '/trending/all/week',
+                    loading_type: FETCH_MOVIES.COMING_THIS_WEEK.LOADING,
+                    success_type: FETCH_MOVIES.COMING_THIS_WEEK.SUCCESS,
+                    error_type: FETCH_MOVIES.COMING_THIS_WEEK.ERROR
+                })
+            );
 
-        dispatch(
-            request_handler({
-                url: '/movie/now_playing',
-                loading_type: FETCH_MOVIES.NEW_ON_NETFLIX.LOADING,
-                success_type: FETCH_MOVIES.NEW_ON_NETFLIX.SUCCESS,
-                error_type: FETCH_MOVIES.NEW_ON_NETFLIX.ERROR
-            })
-        );
+            dispatch(
+                request_handler({
+                    url: '/movie/now_playing',
+                    loading_type: FETCH_MOVIES.NEW_ON_NETFLIX.LOADING,
+                    success_type: FETCH_MOVIES.NEW_ON_NETFLIX.SUCCESS,
+                    error_type: FETCH_MOVIES.NEW_ON_NETFLIX.ERROR
+                })
+            );
+        }
     }, []);
 
     return (

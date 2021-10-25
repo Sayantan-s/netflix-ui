@@ -10,6 +10,8 @@ const Layout = ({ children }) => {
 
     const dispatch = useDispatch();
 
+    const location = useLocation();
+
     const height = useSelector((state) => state.navHeight);
 
     useEffect(() => {
@@ -18,15 +20,7 @@ const Layout = ({ children }) => {
 
     let hasSpace = false;
 
-    const location = useLocation();
-
-    switch (location.pathname) {
-        case '/newpopular':
-            hasSpace = true;
-            break;
-        default:
-            hasSpace = false;
-    }
+    if (location.pathname === '/newpopular') hasSpace = true;
 
     return (
         <>
