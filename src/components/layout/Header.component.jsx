@@ -40,7 +40,7 @@ const Header = (_, ref) => {
                             <Gift stroke={theme.colors.text[0]} size={24} />
                         </IconButton>
                         <IconButton type="icon" size="4.2rem" bg="transparent" noti>
-                            <Text as="span">9</Text>
+                            <Text as="span">9+</Text>
                             <Notification stroke={theme.colors.text[0]} size={40} />
                         </IconButton>
                         <Stack spacing={1} alignItems="center">
